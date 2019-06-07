@@ -1,12 +1,12 @@
 package com.test.sort;
 
 public class MergeSort {
-	static void sort(int[] a, int start, int end){
+	static void sort(int[] a, int start, int end, int[] temp){
 		if(start >= end) return;
 		int mid = start + ((end - start) >> 1);
-		sort(a, start, mid);
-		sort(a, mid + 1, end);
-		merge(a, start, end, mid + 1);
+		sort(a, start, mid, temp);
+		sort(a, mid + 1, end, temp);
+		merge(a, start, end, mid + 1, temp);
 	}
 
 	/**
@@ -17,10 +17,12 @@ public class MergeSort {
 	 * 空间(n)
 	 * 稳定
 	 * 10000次测试长度为4000的数组
-	 * 75秒左右
+	 * 3秒左右
 	 */
 	public static void sort(int[] a){
-		sort(a, 0, a.length - 1);
+		int len = a.length;
+		int[] temparr = new int[len];
+		sort(a, 0, len - 1, temparr);
 	}
 
 	/**
@@ -35,10 +37,10 @@ public class MergeSort {
 	 * @param end
 	 * @param mid
 	 */
-	static void merge(int[] a, int start, int end, int mid){
+	static void merge(int[] a, int start, int end, int mid, int[] temparr){
 		int len = a.length;
 //		int mid = (len >> 1) + (len & 1);
-		int[] temparr = new int[len];
+//		int[] temparr = new int[len];
 		int i = start;// start -> mid
 		int j = mid;//mid -> end + 1
 		for(int k = start; k < end + 1; k++){
