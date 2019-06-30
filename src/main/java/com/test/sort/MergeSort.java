@@ -1,14 +1,6 @@
 package com.test.sort;
 
 public class MergeSort {
-	static void sort(int[] a, int start, int end, int[] temp){
-		if(start >= end) return;
-		int mid = start + ((end - start) >> 1);
-		sort(a, start, mid, temp);
-		sort(a, mid + 1, end, temp);
-		merge(a, start, end, mid + 1, temp);
-	}
-
 	/**
 	 * 归并排序
 	 * 平均n * log2 (n)
@@ -24,6 +16,13 @@ public class MergeSort {
 		int[] temparr = new int[len];
 		sort(a, 0, len - 1, temparr);
 	}
+	static void sort(int[] a, int start, int end, int[] temp){
+		if(start >= end) return;
+		int mid = start + ((end - start) >> 1);
+		sort(a, start, mid, temp);
+		sort(a, mid + 1, end, temp);
+		merge(a, start, end, mid + 1, temp);
+	}
 
 	/**
 	 * --------------
@@ -38,9 +37,6 @@ public class MergeSort {
 	 * @param mid
 	 */
 	static void merge(int[] a, int start, int end, int mid, int[] temparr){
-		int len = a.length;
-//		int mid = (len >> 1) + (len & 1);
-//		int[] temparr = new int[len];
 		int i = start;// start -> mid
 		int j = mid;//mid -> end + 1
 		for(int k = start; k < end + 1; k++){
@@ -57,15 +53,9 @@ public class MergeSort {
 			if(a[i] < a[j]){
 				temparr[k] = a[i];
 				i++;
-//				if(i == mid){
-//					j++;
-//				}
 			}else{
 				temparr[k] = a[j];
 				j++;
-//				if(j == len){
-//					i++;
-//				}
 			}
 		}
 //		print(temparr);

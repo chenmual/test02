@@ -11,6 +11,7 @@ public class InsertSort {
 	 * 适合基本有序的排序
 	 * 10000次测试长度为4000的数组
 	 * 26秒
+	 * sort2使用17秒
 	 * @param arr
 	 */
 	public static void sort(int[] arr){
@@ -27,6 +28,23 @@ public class InsertSort {
 				}else{
 					break;
 				}
+			}
+		}
+	}
+
+	public static void sort2(int[] arr){
+		int len = arr.length;
+		int insertVal = 0;
+		int insertIndex = 0;
+		for(int i = 1; i < len; i++){
+			insertVal = arr[i];
+			insertIndex = i - 1;
+			while(insertIndex >= 0 && insertVal < arr[insertIndex]){
+				arr[insertIndex + 1] = arr[insertIndex];
+				insertIndex--;
+			}
+			if(insertIndex + 1 != i){
+				arr[insertIndex + 1] = insertVal;
 			}
 		}
 	}

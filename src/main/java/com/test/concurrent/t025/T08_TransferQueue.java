@@ -23,7 +23,7 @@ public class T08_TransferQueue {
 		//一直阻塞 等待消费者
 		strs.transfer("aaa");
 
-//		strs.put("aaa");//队列也可以往里仍  有一定容量
+//		strs.checkPos("aaa");//队列也可以往里仍  有一定容量
 
 //		后起消费者线程
 //		new Thread(() -> {
