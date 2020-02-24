@@ -42,9 +42,11 @@ public class TestSortMain {
 //			MergeSort.sort(arr);
 //			QuickSort.sort(arr);
 //			QuickSort.sort1(arr);
-			QuickSort.sort2(arr);
+//			QuickSort.sort2(arr);
 //			CountSort.sort(arr);
 //			RadixSort.sort(arr);
+//			HeapSort.sort(arr);
+			HeapSort.sort2(arr);
 			totaltime = totaltime + System.currentTimeMillis() - start;
 			//verify 123
 			boolean correct = true;

@@ -40,7 +40,6 @@ public class MergeSort {
 		int i = start;// start -> mid
 		int j = mid;//mid -> end + 1
 		for(int k = start; k < end + 1; k++){
-//			System.out.println("i=" + i + " j=" + j + " k=" + k);
 			if(j > end){
 				temparr[k] = a[i];
 				i++;
@@ -58,7 +57,6 @@ public class MergeSort {
 				j++;
 			}
 		}
-//		print(temparr);
 		for(int k = start; k < end + 1; k++){
 			a[k] = temparr[k];
 		}

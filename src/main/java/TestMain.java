@@ -268,7 +268,7 @@ public class TestMain {
 			e.printStackTrace();
 		}
 //		try {
-//			strs.put("4");
+//			strs.checkPos("4");
 //		} catch(InterruptedException e) {
 //			e.printStackTrace();
 //		}

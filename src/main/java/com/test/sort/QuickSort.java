@@ -17,10 +17,10 @@ public class QuickSort {
 	 * @param arr
 	 */
 	public static void sort(int[] arr){
-		sortByDoublePivot(arr, 0, arr.length - 1);
+		sortBySingleEndIndexPivot(arr, 0, arr.length - 1);
 	}
 
-	public static void sortByDoublePivot(int[] arr, int start, int end){
+	public static void sortBySingleEndIndexPivot(int[] arr,int start,int end){
 		if(start >= end) return;
 		int midPivotIndex = end;
 		int leftPivotIndex = start;
@@ -44,13 +44,21 @@ public class QuickSort {
 		arr[leftPivotIndex] = arr[midPivotIndex];
 		arr[midPivotIndex] = temp;
 
-		sortByDoublePivot(arr, start, leftPivotIndex - 1);
-		sortByDoublePivot(arr, leftPivotIndex + 1, end);
+		sortBySingleEndIndexPivot(arr, start, leftPivotIndex - 1);
+		sortBySingleEndIndexPivot(arr, leftPivotIndex + 1, end);
+	}
+
+	/**
+	 * 以随机index作为单轴(替代lastindex)
+	 * 降低遇到最差时间复杂度的可能
+	 * @param arr
+	 */
+	public static void sort1(int[] arr){
+		sortBySingleRandomPivot1(arr, 0, arr.length - 1);
 	}
 	//以随机index为单轴
 	public static void sortBySingleRandomPivot1(int[] arr,int start,int end/*, int deep*/){
 		if(start >= end) return;
-//		System.out.println("---start");
 		int midPivotIndex = start + RandomUtil.s_rnd.nextInt((end - start) + 1);
 		int leftPivotIndex = start;
 		int rightPivotIndex = end;
@@ -70,61 +78,28 @@ public class QuickSort {
 					rightPivotIndex--;
 				}
 			}
-//			if(overleft){
-//				leftPivotIndex--;
-//			}
 			if(leftPivotIndex < rightPivotIndex){
 				int temp = arr[leftPivotIndex];
 				arr[leftPivotIndex] = arr[rightPivotIndex];
 				arr[rightPivotIndex] = temp;
 			}
-//			System.out.print("-l=" + leftPivotIndex + " ");
-//			System.out.print("r=" + rightPivotIndex + " ");
-//			System.out.print("m=" + midPivotIndex + "|");
-//			TestSortMain.printArr(arr);
 		}
 
-//		if(leftPivotIndex > end){
-//			leftPivotIndex = end;
-//		}
 		if(leftPivotIndex > end || (arr[leftPivotIndex] > arr[midPivotIndex] && leftPivotIndex > midPivotIndex)){
 			//以right为新轴
 			leftPivotIndex--;
 			int temp = arr[leftPivotIndex];
 			arr[leftPivotIndex] = arr[midPivotIndex];
 			arr[midPivotIndex] = temp;
-//			System.out.println("------right");
-//			System.out.print("-l=" + leftPivotIndex + " ");
-//			System.out.print("r=" + rightPivotIndex + " ");
-//			System.out.print("m=" + midPivotIndex + "|");
-//			TestSortMain.printArr(arr);
-//			System.out.println("-------next: " + start + "-" + (leftPivotIndex - 1) + " " + (leftPivotIndex + 1) + "-" + end + " deep=" + deep);
 			sortBySingleRandomPivot1(arr, start, leftPivotIndex - 1/*, deep + 1*/);
 			sortBySingleRandomPivot1(arr, leftPivotIndex + 1, end/*, deep + 1*/);
 		}else{
-
 			int temp = arr[leftPivotIndex];
 			arr[leftPivotIndex] = arr[midPivotIndex];
 			arr[midPivotIndex] = temp;
-
-//			System.out.println("------left");
-//			System.out.print("-l=" + leftPivotIndex + " ");
-//			System.out.print("r=" + rightPivotIndex + " ");
-//			System.out.print("m=" + midPivotIndex + "|");
-//			TestSortMain.printArr(arr);
-//			System.out.println("-------next: " + start + "-" + (leftPivotIndex - 1) + " " + (leftPivotIndex + 1) + "-" + end + " deep=" + deep);
 			sortBySingleRandomPivot1(arr, start, leftPivotIndex - 1/*, deep + 1*/);
 			sortBySingleRandomPivot1(arr, leftPivotIndex + 1, end/*, deep + 1*/);
 		}
-	}
-
-	/**
-	 * 以随机index作为单轴(替代lastindex)
-	 * 降低遇到最差时间复杂度的可能
-	 * @param arr
-	 */
-	public static void sort1(int[] arr){
-		sortBySingleRandomPivot1(arr, 0, arr.length - 1);
 	}
 
 	/**
@@ -134,7 +109,6 @@ public class QuickSort {
 	public static void sort2(int[] arr){
 		sortBySinglePivot(arr, 0, arr.length - 1);
 	}
-
 	public static void sortBySinglePivot(int[] arr, int left, int right){
 		int l = left;
 		int r = right;

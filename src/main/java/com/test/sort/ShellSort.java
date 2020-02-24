@@ -16,10 +16,8 @@ public class ShellSort {
 	public static void sort(int[] a){
 		int max_gap = 4;
 		int len = a.length;
-//		System.out.println("len:" + a.length);
 		for(int gap = max_gap; gap > 0; gap--){//gap 4~1
 			for(int i = gap; i < len; i = i + gap){
-//				System.out.println("i:" + i);
 				for(int j = i; j > 0; j = j - gap){
 					if(a[j] < a[j - gap]){
 						//j比j - gap小 交换

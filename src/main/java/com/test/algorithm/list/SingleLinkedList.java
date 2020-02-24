@@ -36,7 +36,21 @@ public class SingleLinkedList {
 		}
 	}
 
-	static class ENode{
+	public ENode getNodeByString(String str){
+		ENode temp = head.next;
+		while(true){
+			if(temp == null){
+				break;
+			}
+			if(temp.name.equals(str)){
+				return temp;
+			}
+			temp = temp.next;
+		}
+		return null;
+	}
+
+	public static class ENode{
 		protected String name;
 		protected ENode next = null;
 		public String getName() {
